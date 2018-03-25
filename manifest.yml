@@ -1,13 +1,15 @@
+---
+declared-services:
+  my-watson-assistant-service:
+    label: conversation
+    plan: free
 applications:
-- path: .
+- name: watson-assistant-simple
+  command: npm start
+  path: .
   memory: 256M
   instances: 1
-  domain: mybluemix.net
-  name: Z2C
-  host: Z2C
-  disk_quota: 1024M
   services:
-    - Speech to Text-xx
-    - Text to Speech-xx
-    - Natural Language Classifier-xx
-    - Cloudant NoSQL DB-xx
+  - my-watson-assistant-service
+  env:
+    NPM_CONFIG_PRODUCTION: false
