@@ -23,8 +23,7 @@ var appEnv = cfenv.getAppEnv();
 
 var serviceCreds = appEnv.getServiceCreds(WATSON_NLC_SERVICE_NAME) || process.env.NLC_CREDS || config.watson_nlc;
 var natural_language_classifier = watson.natural_language_classifier(serviceCreds);
-var classifier_id_industry = process.env.NLC_CLASSIFIER_ID || 'your classifier id goes here';
-
+var classifier_id_industry = process.env.NLC_CLASSIFIER_ID || "your classifier id goes here";
 exports.classifyInd = function(req, res) {
   console.log("Classifier entered");
     _text = req.body.cquery;
@@ -35,14 +34,8 @@ exports.classifyInd = function(req, res) {
                 classifier_id: classifier_id_industry
             },
             function(err, response) {
-              if (err && err.code && err.code == 404) {
-                console.log("ERROR: Check to see if you have set your classifier id or if it is valid");
-                console.log("classifier_id_industry=",classifier_id_industry);
-                _res.status(200).send(err);
-                return;
-              }
-              _res.writeHead(200, { "Content-Type": "text/plain" });
-              _res.end(nlc_res("Industry", err, response));
+                _res.writeHead(200, { "Content-Type": "text/plain" });
+                _res.end(nlc_res("Industry", err, response));
             });
     })(res)
 }
