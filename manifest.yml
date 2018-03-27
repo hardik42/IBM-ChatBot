@@ -4,12 +4,12 @@ declared-services:
     label: conversation
     plan: free
 applications:
-- name: watson-assistant-simple
+- name: IBM-Interview
   command: npm start
   path: .
   memory: 256M
   instances: 1
   services:
-  - my-watson-assistant-service
+  - conversation-gouth-conversati-1521909417947
   env:
     NPM_CONFIG_PRODUCTION: false
